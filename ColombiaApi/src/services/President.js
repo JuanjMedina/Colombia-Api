@@ -1,4 +1,4 @@
-export const getAllPresident = async () => {
+export const getAllPresidents = async () => {
   try {
     const response = await fetch(`https://api-colombia.com/api/v1/President/`)
     const data = await response.json()
