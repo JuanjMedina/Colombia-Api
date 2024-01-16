@@ -4,7 +4,7 @@ import { Card, CardBody } from '@nextui-org/react'
 function RegionesData({ data }) {
   return (
     <div>
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-7 ">
+      <ul className="grid sm:grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-7 w-full ">
         {data.map((item) => (
           <li key={item.id}>
             <Card fullWidth={true} className="h-full  bg-card-color ">

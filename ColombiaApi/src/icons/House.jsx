@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
 
 export default function House({ ancho = 24, alto = 24 }) {
   return (

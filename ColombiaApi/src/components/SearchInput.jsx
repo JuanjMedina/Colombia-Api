@@ -26,12 +26,11 @@ function SearchInputs() {
   return (
     <form
       action=""
-      className="flex items-center justify-around gap-5"
+      className="flex flex-col items-center justify-around gap-5 lg:flex-row"
       onSubmit={handleSubmit}
     >
       <Input type="text" label="Text" size="sm" onChange={setChangeText} />
       <Select
-      value={inputSelect}
         isRequired
         placeholder="Presidentes Regiones..."
         label="Select Category"
@@ -43,7 +42,13 @@ function SearchInputs() {
         <SelectItem key={'Ciudades'}>Ciudades</SelectItem>
         <SelectItem key={'Departamentos'}>Departamentos</SelectItem>
       </Select>
-      <Button color="success" radius="lg" variant="shadow" size="lg" type='submit'>
+      <Button
+        color="success"
+        radius="lg"
+        variant="shadow"
+        size="lg"
+        type="submit"
+      >
         Buscar
       </Button>
     </form>

@@ -4,7 +4,7 @@ import { Card, CardBody, CardHeader, Image } from '@nextui-org/react'
 export default function CityData({ data }) {
   return (
    <div className='overflow-x-hidden max-w-full'>
-     <ul className="grid grid-cols-3 gap-x-4 gap-y-7">
+     <ul className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-7 w-full">
       {data.map((item) => (
         <li key={item.id}>
           <Card fullWidth={true} className="h-full  bg-card-color ">
