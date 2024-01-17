@@ -1,6 +1,8 @@
 import { Button, Input, Select, SelectItem } from '@nextui-org/react'
-import { useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useData } from '../hooks/useData'
+import { dataConext } from '../context/data'
+import debounce from 'just-debounce-it'
 
 const useInput = () => {
   const [inputText, setInputText] = useState('')
@@ -9,14 +11,25 @@ const useInput = () => {
 }
 
 function SearchInputs() {
+  const { data, filterData } = useContext(dataConext)
   const { inputText, setInputText, inputSelect, setInputSelect } = useInput()
   const { searchData } = useData()
+
+  const debounceFilterData = useCallback(
+    debounce((search) => {
+      filterData({ textInput: search })
+    }, 300)
+  )
+
   const setChangeText = (e) => {
     setInputText(e.target.value)
+    debounceFilterData(e.target.value)
   }
+
   const setChangeSelect = (e) => {
     setInputSelect(e.target.value)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     searchData({ selectOption: inputSelect })
@@ -29,7 +42,10 @@ function SearchInputs() {
       className="flex flex-col items-center justify-around gap-5 lg:flex-row"
       onSubmit={handleSubmit}
     >
-      <Input type="text" label="Text" size="sm" onChange={setChangeText} />
+      {data.length > 0 && (
+        <Input type="text" label="Text" size="sm" onChange={setChangeText} />
+      )}
+
       <Select
         isRequired
         placeholder="Presidentes Regiones..."
