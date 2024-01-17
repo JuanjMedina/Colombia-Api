@@ -7,10 +7,21 @@ export function DataProvider({ children }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(null)
   const [error, setError] = useState('')
-  const [selectOption , setSelectOption] = useState('')
+  const [selectOption, setSelectOption] = useState('')
+  const [inputText, setInputText] = useState('')
+
+  const filterData = ({ textInput }) => {
+    const filter = data.filter((item) => {
+      return item.name.toLowerCase().includes(textInput.toLowerCase())
+    })
+    setData(filter)
+  }
+
   return (
     <dataConext.Provider
       value={{
+        filterData,
+        setInputText,
         setData,
         setLoading,
         setError,
@@ -19,6 +30,7 @@ export function DataProvider({ children }) {
         loading,
         error,
         selectOption,
+        inputText
       }}
     >
       {children}
